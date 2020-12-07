@@ -23,8 +23,8 @@ public interface SecretProvider {
      * The only contract is that the returned identifier should change after updateSecret()
      * is called but otherwise be stable.
      *
-     * @param  id an identifier that uniquely identifies a secret
-     * @return    a version identifer
+     * @param  id   an identifier that uniquely identifies a secret
+     * @return      a version identifer
      */
     public String getSecretVersion(SecretIdentifier id)
         throws SecretNotFoundException;
