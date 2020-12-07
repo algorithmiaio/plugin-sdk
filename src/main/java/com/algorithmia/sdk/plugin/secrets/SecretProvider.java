@@ -32,8 +32,8 @@ public interface SecretProvider {
     /**
      * Creates a secret based on provided value and returns a SecretIdentifier.
      *
-     * @param  id an identifier that uniquely identifies a secret
-     * @return    a Secret from the secret provider
+     * @param  value the value of the secret to create
+     * @return    the secret identifier that this secret will be reffered to with
      */
     public SecretIdentifier createSecret(String value);
     /**
@@ -41,9 +41,10 @@ public interface SecretProvider {
      * a SecretIdentifier.
      *
      * @param  id an identifier that uniquely identifies a secret
-     * @return    a Secret from the secret provider
+     * @param  value the new value of the secret
+     * @return  a version identifier for this update.  See {@link #getSecretVersion(SecretIdentifier) getSecretVersion}
      */
-    public SecretIdentifier updateSecret(SecretIdentifier id, String value)
+    public String updateSecret(SecretIdentifier id, String value)
         throws SecretNotFoundException;
     /**
      * Deletes a secret based on provided SecretIdentifier and returns a boolean
