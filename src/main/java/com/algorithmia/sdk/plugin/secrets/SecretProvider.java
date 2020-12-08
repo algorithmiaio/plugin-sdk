@@ -60,7 +60,8 @@ public interface SecretProvider {
      *
      * @param id
      */
-    public Instant secretLastUpdated(SecretIdentifier id);
+    public Instant secretLastUpdated(SecretIdentifier id)
+        throws SecretNotFoundException;
     /**
      * Retrieve time to live (TTL) for the secret provider
      * object before a new one must be created.
