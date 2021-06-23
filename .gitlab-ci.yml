@@ -2,17 +2,8 @@ default:
   image: algorithmiahq/sbt-builder:latest
 
 stages:
-- build
 - test
 - publish
-
-build:compile_project:
-  stage: build
-  artifacts:
-    paths:
-    - target/
-  script:
-  - sbt compile
 
 test:unit_test:
   stage: test
@@ -20,6 +11,8 @@ test:unit_test:
   - sbt test
 
 publish:push_to_maven:
+  rules:
+    - if: $CI_COMMIT_REF_PROTECTED == "true"
   stage: publish
   script:
-  - sbt publish
+  - sbt ci-release
