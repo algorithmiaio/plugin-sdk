@@ -18,3 +18,5 @@ description := "Algorithmia plugin SDK"
 // Forbid including Scala related libraries
 autoScalaLibrary := false
 
+// Do not append Scala versions to generated artifacts
+crossPaths := false
