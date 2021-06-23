@@ -1,18 +1,20 @@
-
+inThisBuild(List(
+  organization := "com.algorithmia",
+  homepage := Some(url("https://github.com/algorithmiaio/plugin-sdk")),
+  licenses := List("MIT" -> url("https://github.com/algorithmiaio/plugin-sdk/blob/master/LICENSE")),
+  developers := List(
+    Developer(
+      "jbooth",
+      "Joshua Booth",
+      "jbooth@algorithmia.com",
+      url("https://algorithmia.com")
+    )
+  )
+))
 name := "plugin-sdk"
-
 organization := "com.algorithmia"
-
 description := "Algorithmia plugin SDK"
-
-publishMavenStyle := true
-publishTo := Some("Algorithmia Maven" at "s3://s3-us-west-2.amazonaws.com/algorithmia-maven/repo")
-
-// Do not append Scala versions to generated artifacts
-crossPaths := false
 
 // Forbid including Scala related libraries
 autoScalaLibrary := false
 
-// version artifacts using Git
-enablePlugins(GitVersioning)
