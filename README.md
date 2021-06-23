@@ -36,10 +36,29 @@ libraryDependencies += "com.algorithmia" % "plugin-sdk" % "1.0.0"
 ## Publishing this SDK
 
 CI will publish the plugin a new version under the following conditions:
-- The `master` branch will publish a SNAPSHOT for all commits.  This is accessible only to internal developers.
+- The `master` and `v*` branches will publish a SNAPSHOT for all commits.  This is accessible only to internal developers.
 - A semantic version in the form of a git tag, `vX.Y.Z` will publish to Maven central.
 
-### Publishing a new version
-To publish the next version:
-- Increment the version in the README.md for `sbt` and `maven` instructions.
-- After merging that PR to master, create a new GitHub release using the appropriate SemVer
+### Branches and tags
+- `master` represents `vNext` and corresponds to SNAPSHOT releases
+- `v1.x` is a major version branch.  Each major version has its own branch.
+- `vX.Y.Z` as a tag targets the corresponding major version branch. 
+
+
+### Publishing a major version
+To create a new major version:
+1. Start with `git checkout master`
+1. Create the new release branch: `git checkout -b v2.x` where `2` is the new major version.
+1. Create a GitHub Release for `v2.0.0` targeting the `v2.x` branch
+
+### Publishing a minor version
+To publish a minor or patch version:
+1. Start from the corresponding major version `git checkout v1.x`
+1. Create a feature branch `git checkout -b my-feature`
+   a. NOTE: branches can't begin with `v`
+1. In github, create a pull request from `my-feature` -> `v1.x`
+1. Create a pull request from `my-feature` -> `master` to ensure inclusion in future major versions.
+1. Merge the pull request
+1. Create a new GitHub Release with a new SemVer tag e.g. `v1.1.1`, targeting branch `v1.x`
+1. Include any changes in the release notes
+
